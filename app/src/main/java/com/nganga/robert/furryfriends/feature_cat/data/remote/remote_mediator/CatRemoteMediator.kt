@@ -9,7 +9,7 @@ import com.nganga.robert.furryfriends.feature_cat.data.local.dao.BreedsDao
 import com.nganga.robert.furryfriends.feature_cat.data.local.dao.RemoteKeysDao
 import com.nganga.robert.furryfriends.feature_cat.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKey
+import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKeyEntity
 import com.nganga.robert.furryfriends.feature_cat.data.mappers.toCatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import javax.inject.Inject
@@ -63,7 +63,7 @@ class CatRemoteMediator @Inject constructor(
                     remoteKeysDao.clearAllKeys()
                 }
                 val remoteKeys = response.map { cat->
-                    RemoteKey(
+                    RemoteKeyEntity(
                         id = cat.id,
                         prevKey = prevPage,
                         nextKey = nextPage
@@ -81,7 +81,7 @@ class CatRemoteMediator @Inject constructor(
 
     private fun getRemoteKeyClosestToCurrentPosition(
         state: PagingState<Int, CatEntity>
-    ): RemoteKey? {
+    ): RemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 remoteKeysDao.getRemoteKey(id = id)
@@ -91,7 +91,7 @@ class CatRemoteMediator @Inject constructor(
 
     private fun getRemoteKeyForFirstItem(
         state: PagingState<Int, CatEntity>
-    ): RemoteKey? {
+    ): RemoteKeyEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { cat ->
                 remoteKeysDao.getRemoteKey(cat.id)
@@ -100,7 +100,7 @@ class CatRemoteMediator @Inject constructor(
 
     private fun getRemoteKeyForLastItem(
         state: PagingState<Int, CatEntity>
-    ): RemoteKey? {
+    ): RemoteKeyEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { cat ->
                 remoteKeysDao.getRemoteKey(cat.id)
