@@ -7,12 +7,11 @@ import com.nganga.robert.furryfriends.feature_cat.data.local.dao.RemoteKeysDao
 import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKeyEntity
 
-
 @Database(
     entities = [CatEntity::class, RemoteKeyEntity::class],
-    version = 1
+    version = 1,
 )
-abstract class CatsDatabase: RoomDatabase() {
+abstract class CatsDatabase : RoomDatabase() {
     abstract val breedsDao: BreedsDao
     abstract val remoteKeysDao: RemoteKeysDao
 }

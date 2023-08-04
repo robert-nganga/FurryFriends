@@ -6,8 +6,6 @@ import javax.inject.Inject
 
 class CatRepositoryImpl@Inject constructor(
     private val api: BreedsApi,
-    private val database: CatsDatabase
-){
-
-
+    private val database: CatsDatabase,
+) {
 }

@@ -17,28 +17,27 @@ import javax.inject.Inject
 @OptIn(ExperimentalPagingApi::class)
 class CatRemoteMediator @Inject constructor(
     private val api: BreedsApi,
-    private val database: CatsDatabase
-): RemoteMediator<Int, CatEntity>() {
+    private val database: CatsDatabase,
+) : RemoteMediator<Int, CatEntity>() {
 
     private val remoteKeysDao: RemoteKeysDao = database.remoteKeysDao
     private val breedsDao: BreedsDao = database.breedsDao
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, CatEntity>
+        state: PagingState<Int, CatEntity>,
     ): MediatorResult {
-
         return try {
-            val currentPage = when(loadType){
+            val currentPage = when (loadType) {
                 LoadType.REFRESH -> {
                     val remoteKey = getRemoteKeyClosestToCurrentPosition(state)
-                    remoteKey?.prevKey?: 1
+                    remoteKey?.prevKey ?: 1
                 }
                 LoadType.APPEND -> {
                     val remoteKeys = getRemoteKeyForLastItem(state)
                     val nextPage = remoteKeys?.nextKey
                         ?: return MediatorResult.Success(
-                            endOfPaginationReached = remoteKeys != null
+                            endOfPaginationReached = remoteKeys != null,
                         )
                     nextPage
                 }
@@ -46,7 +45,7 @@ class CatRemoteMediator @Inject constructor(
                     val remoteKeys = getRemoteKeyForFirstItem(state)
                     val prevPage = remoteKeys?.prevKey
                         ?: return MediatorResult.Success(
-                            endOfPaginationReached = remoteKeys != null
+                            endOfPaginationReached = remoteKeys != null,
                         )
                     prevPage
                 }
@@ -58,29 +57,28 @@ class CatRemoteMediator @Inject constructor(
             val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
             database.withTransaction {
-                if (loadType == LoadType.REFRESH){
+                if (loadType == LoadType.REFRESH) {
                     breedsDao.clearAllBreeds()
                     remoteKeysDao.clearAllKeys()
                 }
-                val remoteKeys = response.map { cat->
+                val remoteKeys = response.map { cat ->
                     RemoteKeyEntity(
                         id = cat.id,
                         prevKey = prevPage,
-                        nextKey = nextPage
+                        nextKey = nextPage,
                     )
                 }
                 breedsDao.insertCatBreeds(response.map { it.toCatEntity() })
                 remoteKeysDao.addRemoteKeys(remoteKeys)
             }
             MediatorResult.Success(endOfPaginationReached)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             MediatorResult.Error(e)
         }
-
     }
 
     private fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, CatEntity>
+        state: PagingState<Int, CatEntity>,
     ): RemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
@@ -90,7 +88,7 @@ class CatRemoteMediator @Inject constructor(
     }
 
     private fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, CatEntity>
+        state: PagingState<Int, CatEntity>,
     ): RemoteKeyEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { cat ->
@@ -99,7 +97,7 @@ class CatRemoteMediator @Inject constructor(
     }
 
     private fun getRemoteKeyForLastItem(
-        state: PagingState<Int, CatEntity>
+        state: PagingState<Int, CatEntity>,
     ): RemoteKeyEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { cat ->

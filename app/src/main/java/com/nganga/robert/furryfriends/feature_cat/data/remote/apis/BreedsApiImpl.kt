@@ -10,14 +10,14 @@ import io.ktor.client.request.url
 import javax.inject.Inject
 
 class BreedsApiImpl@Inject constructor(
-    private val client: HttpClient
-): BreedsApi {
+    private val client: HttpClient,
+) : BreedsApi {
     override suspend fun getBreeds(page: Int, pageSize: Int): List<CatDto> {
         return client.get {
             url(HttpRoutes.CAT_BREEDS)
             parameter("page", page)
             parameter("limit", pageSize)
-            //parameter("apiKey", Buil)
+            // parameter("apiKey", Buil)
         }.body()
     }
 }

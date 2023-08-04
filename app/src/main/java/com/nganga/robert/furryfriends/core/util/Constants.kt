@@ -1,5 +1,3 @@
 package com.nganga.robert.furryfriends.core.util
 
-object Constants {
-
-}
+object Constants

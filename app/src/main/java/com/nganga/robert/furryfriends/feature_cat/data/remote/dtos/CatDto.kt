@@ -39,5 +39,5 @@ data class CatDto(
     val vetstreet_url: String,
     val vocalisation: Int,
     val weight: WeightDto,
-    val wikipedia_url: String
+    val wikipedia_url: String,
 )

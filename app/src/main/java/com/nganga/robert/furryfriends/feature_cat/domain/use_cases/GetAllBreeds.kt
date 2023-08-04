@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetAllBreeds@Inject constructor(
-    private val repository: CatRepository
+    private val repository: CatRepository,
 ) {
     operator fun invoke(page: Int, pageSize: Int): Flow<Pager<Int, CatEntity>> {
         return repository.getAllBreeds(page, pageSize)

@@ -1,6 +1,5 @@
 package com.nganga.robert.furryfriends.feature_cat.domain.model
 
-import androidx.room.PrimaryKey
 import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.WeightDto
 
 data class Cat(
