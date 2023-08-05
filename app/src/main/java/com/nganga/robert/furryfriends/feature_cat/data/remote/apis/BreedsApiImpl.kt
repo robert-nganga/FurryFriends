@@ -9,7 +9,7 @@ import io.ktor.client.request.parameter
 import io.ktor.client.request.url
 import javax.inject.Inject
 
-class BreedsApiImpl@Inject constructor(
+class BreedsApiImpl @Inject constructor(
     private val client: HttpClient,
 ) : BreedsApi {
     override suspend fun getBreeds(page: Int, pageSize: Int): List<CatDto> {
