@@ -27,7 +27,7 @@ fun CatDto.toCatEntity(): CatEntity {
     )
 }
 
-fun CatEntity.toCatEntity(): Cat {
+fun CatEntity.toCat(): Cat {
     return Cat(
         adaptability = adaptability,
         affection_level = affection_level,
