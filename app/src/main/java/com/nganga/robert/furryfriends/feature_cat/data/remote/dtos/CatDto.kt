@@ -1,9 +1,13 @@
 package com.nganga.robert.furryfriends.feature_cat.data.remote.dtos
 
+import kotlinx.serialization.Serializable
+
+
+//@Serializable
 data class CatDto(
     val adaptability: Int,
     val affection_level: Int,
-    val alt_names: String,
+    //val alt_names: String,
     val bidability: Int,
     val cat_friendly: Int,
     val cfa_url: String,

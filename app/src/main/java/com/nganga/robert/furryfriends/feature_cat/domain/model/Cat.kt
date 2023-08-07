@@ -19,6 +19,5 @@ data class Cat(
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String,
-    val weight: WeightDto,
+    val reference_image_id: String
 )

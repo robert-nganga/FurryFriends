@@ -1,5 +1,6 @@
 package com.nganga.robert.furryfriends.feature_cat.data.remote.remote_mediator
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -73,6 +74,8 @@ class CatRemoteMediator @Inject constructor(
             }
             MediatorResult.Success(endOfPaginationReached)
         } catch (e: Exception) {
+            e.printStackTrace()
+            e.message?.let { Log.e("CatRemoteMediator", it) }
             MediatorResult.Error(e)
         }
     }
