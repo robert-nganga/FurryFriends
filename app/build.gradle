@@ -69,8 +69,6 @@ dependencies {
     androidTestImplementation platform('androidx.compose:compose-bom:2023.03.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     androidTestImplementation "io.ktor:ktor-client-mock:$ktor_version"
-//    androidTestImplementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
-//    androidTestImplementation "io.ktor:ktor-serialization-gson:$ktor_version"
 
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
@@ -95,11 +93,10 @@ dependencies {
     //ktor
     implementation "io.ktor:ktor-client-core:$ktor_version"
     implementation "io.ktor:ktor-client-android:$ktor_version"
-    //implementation "io.ktor:ktor-client-serialization:$ktor_version"
     implementation "io.ktor:ktor-client-logging:$ktor_version"
     implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
     implementation "io.ktor:ktor-serialization-gson:$ktor_version"
-    //implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+
 
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1'
 

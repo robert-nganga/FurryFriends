@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.nganga.robert.furryfriends.core.util.Constants
 import com.nganga.robert.furryfriends.core.util.Constants.CAT_DB
-import com.nganga.robert.furryfriends.feature_cat.data.local.db.CatsDatabase
+import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApiImpl
 import com.nganga.robert.furryfriends.feature_cat.data.remote.remote_mediator.CatRemoteMediator

@@ -1,6 +1,6 @@
 package com.nganga.robert.furryfriends.feature_cat.data.mappers
 
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
+import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.CatDto
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
 

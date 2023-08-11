@@ -1,10 +1,10 @@
-package com.nganga.robert.furryfriends.feature_cat.data.local.dao
+package com.nganga.robert.furryfriends.core.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKeyEntity
+import com.nganga.robert.furryfriends.core.data.local.entities.RemoteKeyEntity
 
 @Dao
 interface RemoteKeysDao {

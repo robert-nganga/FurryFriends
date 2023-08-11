@@ -1,4 +1,4 @@
-package com.nganga.robert.furryfriends.feature_cat.data.local.entities
+package com.nganga.robert.furryfriends.core.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -7,8 +7,8 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.nganga.robert.furryfriends.feature_cat.data.local.db.CatsDatabase
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
+import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
+import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApiImpl
 import com.nganga.robert.furryfriends.feature_cat.data.util.HttpClientFactory

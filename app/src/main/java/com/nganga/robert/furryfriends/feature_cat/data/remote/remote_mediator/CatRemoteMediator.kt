@@ -6,11 +6,11 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.nganga.robert.furryfriends.feature_cat.data.local.dao.BreedsDao
-import com.nganga.robert.furryfriends.feature_cat.data.local.dao.RemoteKeysDao
-import com.nganga.robert.furryfriends.feature_cat.data.local.db.CatsDatabase
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
-import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKeyEntity
+import com.nganga.robert.furryfriends.core.data.local.dao.BreedsDao
+import com.nganga.robert.furryfriends.core.data.local.dao.RemoteKeysDao
+import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
+import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
+import com.nganga.robert.furryfriends.core.data.local.entities.RemoteKeyEntity
 import com.nganga.robert.furryfriends.feature_cat.data.mappers.toCatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import kotlinx.coroutines.Dispatchers
