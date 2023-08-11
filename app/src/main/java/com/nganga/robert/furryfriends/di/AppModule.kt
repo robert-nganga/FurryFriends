@@ -11,6 +11,7 @@ import com.nganga.robert.furryfriends.feature_cat.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApiImpl
 import com.nganga.robert.furryfriends.feature_cat.data.remote.remote_mediator.CatRemoteMediator
+import com.nganga.robert.furryfriends.feature_cat.data.util.HttpClientFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,14 +32,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient() = HttpClient(Android) {
-        install(Logging) {
-            level = LogLevel.ALL
-        }
-        install(ContentNegotiation) {
-            gson()
-        }
-    }
+    fun provideHttpClient() = HttpClientFactory.create(Android.create())
 
     @Provides
     @Singleton
