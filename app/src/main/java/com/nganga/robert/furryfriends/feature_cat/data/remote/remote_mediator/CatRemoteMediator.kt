@@ -13,6 +13,8 @@ import com.nganga.robert.furryfriends.feature_cat.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.local.entities.RemoteKeyEntity
 import com.nganga.robert.furryfriends.feature_cat.data.mappers.toCatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -28,55 +30,59 @@ class CatRemoteMediator @Inject constructor(
         loadType: LoadType,
         state: PagingState<Int, CatEntity>,
     ): MediatorResult {
-        return try {
-            val currentPage = when (loadType) {
-                LoadType.REFRESH -> {
-                    val remoteKey = getRemoteKeyClosestToCurrentPosition(state)
-                    remoteKey?.prevKey ?: 1
+        return withContext(Dispatchers.IO){
+            try {
+                val currentPage = when (loadType) {
+                    LoadType.REFRESH -> {
+                        val remoteKey = getRemoteKeyClosestToCurrentPosition(state)
+                        remoteKey?.prevKey ?: 1
+                    }
+                    LoadType.APPEND -> {
+                        val remoteKeys = getRemoteKeyForLastItem(state)
+                        val nextPage = remoteKeys?.nextKey
+                            ?: return@withContext MediatorResult.Success(
+                                endOfPaginationReached = remoteKeys != null,
+                            )
+                        nextPage
+                    }
+                    LoadType.PREPEND -> {
+                        val remoteKeys = getRemoteKeyForFirstItem(state)
+                        val prevPage = remoteKeys?.prevKey
+                            ?: return@withContext MediatorResult.Success(
+                                endOfPaginationReached = remoteKeys != null,
+                            )
+                        prevPage
+                    }
                 }
-                LoadType.APPEND -> {
-                    val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextPage = remoteKeys?.nextKey
-                        ?: return MediatorResult.Success(
-                            endOfPaginationReached = remoteKeys != null,
-                        )
-                    nextPage
-                }
-                LoadType.PREPEND -> {
-                    val remoteKeys = getRemoteKeyForFirstItem(state)
-                    val prevPage = remoteKeys?.prevKey
-                        ?: return MediatorResult.Success(
-                            endOfPaginationReached = remoteKeys != null,
-                        )
-                    prevPage
-                }
-            }
 
-            val response = api.getBreeds(currentPage, state.config.pageSize)
-            val endOfPaginationReached = response.isEmpty()
-            val prevPage = if (currentPage == 1) null else currentPage - 1
-            val nextPage = if (endOfPaginationReached) null else currentPage + 1
+                val response = api.getBreeds(currentPage, state.config.pageSize)
+                val endOfPaginationReached = response.isEmpty()
+                val prevPage = if (currentPage == 1) null else currentPage - 1
+                val nextPage = if (endOfPaginationReached) null else currentPage + 1
 
-            database.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    breedsDao.clearAllBreeds()
-                    remoteKeysDao.clearAllKeys()
+                database.withTransaction {
+                    if (loadType == LoadType.REFRESH) {
+                        breedsDao.clearAllBreeds()
+                        remoteKeysDao.clearAllKeys()
+                    }
+                    val remoteKeys = response.map { cat ->
+                        RemoteKeyEntity(
+                            id = cat.id,
+                            prevKey = prevPage,
+                            nextKey = nextPage,
+                        )
+                    }
+                    breedsDao.insertCatBreeds(response.map { it.toCatEntity() })
+                    remoteKeysDao.addRemoteKeys(remoteKeys)
                 }
-                val remoteKeys = response.map { cat ->
-                    RemoteKeyEntity(
-                        id = cat.id,
-                        prevKey = prevPage,
-                        nextKey = nextPage,
-                    )
+                MediatorResult.Success(endOfPaginationReached)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                e.message?.let {
+                    Log.i("Mediator", "Mediator result is Error, error:: $it")
                 }
-                breedsDao.insertCatBreeds(response.map { it.toCatEntity() })
-                remoteKeysDao.addRemoteKeys(remoteKeys)
+                MediatorResult.Error(e)
             }
-            MediatorResult.Success(endOfPaginationReached)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            e.message?.let { Log.e("CatRemoteMediator", it) }
-            MediatorResult.Error(e)
         }
     }
 
@@ -99,7 +105,7 @@ class CatRemoteMediator @Inject constructor(
             }
     }
 
-    private fun getRemoteKeyForLastItem(
+    private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, CatEntity>,
     ): RemoteKeyEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()

@@ -31,7 +31,7 @@ data class CatDto(
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String,
+    val reference_image_id: String?,
     val rex: Int,
     val shedding_level: Int,
     val short_legs: Int,

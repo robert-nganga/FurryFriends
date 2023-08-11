@@ -32,6 +32,14 @@ fun CatListScreen(
                 Toast.LENGTH_SHORT,
             ).show()
         }
+
+        if (catBreeds.loadState.append is LoadState.Error) {
+            Toast.makeText(
+                context,
+                "Error" + (catBreeds.loadState.append as LoadState.Error).error.message,
+                Toast.LENGTH_LONG,
+            ).show()
+        }
     }
 
     Box(
@@ -50,7 +58,9 @@ fun CatListScreen(
                 }
                 item {
                     if (catBreeds.loadState.append is LoadState.Loading) {
-                        CircularProgressIndicator()
+                        Box(contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator()
+                        }
                     }
                 }
             }

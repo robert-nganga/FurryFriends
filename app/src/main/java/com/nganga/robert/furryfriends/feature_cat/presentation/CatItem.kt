@@ -26,7 +26,7 @@ fun CatItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(150.dp),
-            model = cat.reference_image_id.getImageUrl(),
+            model = cat.reference_image_id?.getImageUrl(),
             contentDescription = "cat image",
             contentScale = ContentScale.Crop,
         )
