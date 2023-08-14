@@ -26,7 +26,7 @@ class CatRepositoryImpl@Inject constructor(
                 api = api,
                 database = database,
             ),
-            pagingSourceFactory = { database.breedsDao.getCatBreeds() },
+            pagingSourceFactory = { database.catBreedsDao.getCatBreeds() },
         ).flow
     }
 }

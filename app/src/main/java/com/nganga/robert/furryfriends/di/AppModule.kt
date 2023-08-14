@@ -54,6 +54,6 @@ object AppModule {
             api = api,
             database = database,
         ),
-        pagingSourceFactory = { database.breedsDao.getCatBreeds() },
+        pagingSourceFactory = { database.catBreedsDao.getCatBreeds() },
     )
 }

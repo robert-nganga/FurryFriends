@@ -8,7 +8,7 @@ import androidx.room.Query
 import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 
 @Dao
-interface BreedsDao {
+interface CatBreedsDao {
 
     @Query("SELECT * FROM cat_breeds")
     fun getCatBreeds(): PagingSource<Int, CatEntity>

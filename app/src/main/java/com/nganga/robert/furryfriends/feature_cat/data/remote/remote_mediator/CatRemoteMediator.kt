@@ -6,7 +6,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.nganga.robert.furryfriends.core.data.local.dao.BreedsDao
+import com.nganga.robert.furryfriends.core.data.local.dao.CatBreedsDao
 import com.nganga.robert.furryfriends.core.data.local.dao.RemoteKeysDao
 import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
@@ -24,7 +24,7 @@ class CatRemoteMediator @Inject constructor(
 ) : RemoteMediator<Int, CatEntity>() {
 
     private val remoteKeysDao: RemoteKeysDao = database.remoteKeysDao
-    private val breedsDao: BreedsDao = database.breedsDao
+    private val catBreedsDao: CatBreedsDao = database.catBreedsDao
 
     override suspend fun load(
         loadType: LoadType,
@@ -62,7 +62,7 @@ class CatRemoteMediator @Inject constructor(
 
                 database.withTransaction {
                     if (loadType == LoadType.REFRESH) {
-                        breedsDao.clearAllBreeds()
+                        catBreedsDao.clearAllBreeds()
                         remoteKeysDao.clearAllKeys()
                     }
                     val remoteKeys = response.map { cat ->
@@ -72,7 +72,7 @@ class CatRemoteMediator @Inject constructor(
                             nextKey = nextPage,
                         )
                     }
-                    breedsDao.insertCatBreeds(response.map { it.toCatEntity() })
+                    catBreedsDao.insertCatBreeds(response.map { it.toCatEntity() })
                     remoteKeysDao.addRemoteKeys(remoteKeys)
                 }
                 MediatorResult.Success(endOfPaginationReached)
