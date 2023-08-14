@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetAllBreeds@Inject constructor(
+class GetCatBreeds@Inject constructor(
     private val repository: CatRepository,
 ) {
     operator fun invoke(): Flow<PagingData<Cat>> {
