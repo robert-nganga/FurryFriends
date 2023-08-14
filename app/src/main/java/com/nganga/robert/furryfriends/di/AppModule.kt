@@ -5,9 +5,9 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
+import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.core.util.Constants
 import com.nganga.robert.furryfriends.core.util.Constants.CAT_DB
-import com.nganga.robert.furryfriends.core.data.local.db.CatsDatabase
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApi
 import com.nganga.robert.furryfriends.feature_cat.data.remote.apis.BreedsApiImpl
 import com.nganga.robert.furryfriends.feature_cat.data.remote.remote_mediator.CatRemoteMediator
@@ -19,11 +19,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.serialization.gson.gson
-import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Module

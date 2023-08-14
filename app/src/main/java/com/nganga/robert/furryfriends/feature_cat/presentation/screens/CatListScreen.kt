@@ -44,7 +44,7 @@ fun CatListScreen(
 
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         if (catBreeds.loadState.refresh is LoadState.Loading) {
             CircularProgressIndicator()

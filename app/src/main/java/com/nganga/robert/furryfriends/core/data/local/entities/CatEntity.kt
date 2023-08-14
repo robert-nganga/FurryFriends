@@ -2,7 +2,6 @@ package com.nganga.robert.furryfriends.core.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.WeightDto
 
 @Entity(tableName = "cat_breeds")
 data class CatEntity(
@@ -22,5 +21,5 @@ data class CatEntity(
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String?
+    val reference_image_id: String?,
 )

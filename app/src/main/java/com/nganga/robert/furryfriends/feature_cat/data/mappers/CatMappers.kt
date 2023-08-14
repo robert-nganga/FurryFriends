@@ -22,7 +22,7 @@ fun CatDto.toCatEntity(): CatEntity {
         natural = natural,
         origin = origin,
         rare = rare,
-        reference_image_id = reference_image_id
+        reference_image_id = reference_image_id,
     )
 }
 
@@ -44,6 +44,6 @@ fun CatEntity.toCat(): Cat {
         natural = natural,
         origin = origin,
         rare = rare,
-        reference_image_id = reference_image_id
+        reference_image_id = reference_image_id,
     )
 }

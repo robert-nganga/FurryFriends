@@ -30,7 +30,7 @@ class CatRemoteMediator @Inject constructor(
         loadType: LoadType,
         state: PagingState<Int, CatEntity>,
     ): MediatorResult {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             try {
                 val currentPage = when (loadType) {
                     LoadType.REFRESH -> {
