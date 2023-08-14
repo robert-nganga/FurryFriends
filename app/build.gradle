@@ -50,6 +50,12 @@ android {
     }
 }
 
+secrets {
+    // Change the properties file from the default "local.properties" in your root project
+    // to another properties file in your root project.
+    propertiesFileName 'secrets.properties'
+}
+
 dependencies {
     def ktor_version = "2.3.2"
 
