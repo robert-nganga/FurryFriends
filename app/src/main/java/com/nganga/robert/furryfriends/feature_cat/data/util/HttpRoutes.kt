@@ -1,4 +1,4 @@
-package com.nganga.robert.furryfriends.feature_cat.data.remote
+package com.nganga.robert.furryfriends.feature_cat.data.util
 
 object HttpRoutes {
     private const val BASE_URL = "https://api.thecatapi.com/v1"

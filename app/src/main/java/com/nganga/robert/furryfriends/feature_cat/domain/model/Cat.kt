@@ -1,8 +1,5 @@
 package com.nganga.robert.furryfriends.feature_cat.domain.model
 
-import androidx.room.PrimaryKey
-import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.WeightDto
-
 data class Cat(
     val adaptability: Int,
     val affection_level: Int,
@@ -20,6 +17,5 @@ data class Cat(
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String,
-    val weight: WeightDto,
+    val reference_image_id: String?,
 )

@@ -1,9 +1,10 @@
 package com.nganga.robert.furryfriends.feature_cat.data.remote.dtos
 
+// @Serializable
 data class CatDto(
     val adaptability: Int,
     val affection_level: Int,
-    val alt_names: String,
+    // val alt_names: String,
     val bidability: Int,
     val cat_friendly: Int,
     val cfa_url: String,
@@ -27,7 +28,7 @@ data class CatDto(
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String,
+    val reference_image_id: String?,
     val rex: Int,
     val shedding_level: Int,
     val short_legs: Int,
@@ -39,5 +40,5 @@ data class CatDto(
     val vetstreet_url: String,
     val vocalisation: Int,
     val weight: WeightDto,
-    val wikipedia_url: String
+    val wikipedia_url: String,
 )
