@@ -5,6 +5,9 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.ContentType
+import io.ktor.http.headers
+import io.ktor.http.headersOf
 import io.ktor.serialization.gson.gson
 
 class HttpClientFactory {
@@ -14,8 +17,9 @@ class HttpClientFactory {
             install(Logging) {
                 level = LogLevel.ALL
             }
+
             install(ContentNegotiation) {
-                gson()
+                gson(ContentType.Application.Json)
             }
         }
     }

@@ -1,12 +1,15 @@
 package com.nganga.robert.furryfriends.feature_cat.data.remote.apis
 
-import com.nganga.robert.furryfriends.feature_cat.data.remote.HttpRoutes
+import com.nganga.robert.furryfriends.feature_cat.data.util.HttpRoutes
 import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.CatDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.accept
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
+import io.ktor.http.ContentType
 import javax.inject.Inject
 
 class BreedsApiImpl @Inject constructor(
@@ -17,7 +20,7 @@ class BreedsApiImpl @Inject constructor(
             url(HttpRoutes.CAT_BREEDS)
             parameter("page", page)
             parameter("limit", pageSize)
-            // parameter("apiKey", Buil)
+//            parameter("apiKey", BuildC)
         }.body()
     }
 }
