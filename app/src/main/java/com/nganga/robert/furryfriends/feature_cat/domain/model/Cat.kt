@@ -18,4 +18,6 @@ data class Cat(
     val origin: String,
     val rare: Int,
     val reference_image_id: String?,
-)
+){
+    constructor(): this(0,0,0,"","","",0,0,"",0,0,"","",0,"",0,"")
+}

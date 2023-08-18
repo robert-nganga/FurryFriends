@@ -1,5 +1,6 @@
 package com.nganga.robert.furryfriends.feature_cat.presentation
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
@@ -16,6 +17,7 @@ import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
 fun CatItem(
     modifier: Modifier = Modifier,
     cat: Cat,
+    onClick: ()->Unit
 ) {
     Card(
         modifier = modifier
@@ -25,7 +27,10 @@ fun CatItem(
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp),
+                .height(150.dp)
+                .clickable {
+                   onClick.invoke()
+                },
             model = cat.reference_image_id?.getImageUrl(),
             contentDescription = "cat image",
             contentScale = ContentScale.Crop,
