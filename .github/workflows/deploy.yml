@@ -1,8 +1,6 @@
 name: Build and Deploy App to Firebase Distribution
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
