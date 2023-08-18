@@ -18,6 +18,8 @@ class CatRepositoryImpl@Inject constructor(
     private val database: CatsDatabase,
 ) : CatRepository {
 
+    private val catBreedsDao = database.catBreedsDao
+
     @OptIn(ExperimentalPagingApi::class)
     override fun getAllBreeds(): Flow<PagingData<CatEntity>> {
         return Pager(
@@ -29,4 +31,9 @@ class CatRepositoryImpl@Inject constructor(
             pagingSourceFactory = { database.catBreedsDao.getCatBreeds() },
         ).flow
     }
+
+    override fun getCatById(id: String): Flow<List<CatEntity>> {
+        return catBreedsDao.getCatById(id)
+    }
+
 }

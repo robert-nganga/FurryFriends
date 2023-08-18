@@ -21,6 +21,7 @@ import com.nganga.robert.furryfriends.feature_cat.presentation.CatItem
 @Composable
 fun CatListScreen(
     catBreeds: LazyPagingItems<Cat>,
+    onCatClick: (String)->Unit
 ) {
     val context = LocalContext.current
 
@@ -54,7 +55,14 @@ fun CatListScreen(
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
                 items(count = catBreeds.itemCount) { index ->
-                    catBreeds[index]?.let { CatItem(cat = it) }
+                    catBreeds[index]?.let {
+                        CatItem(
+                            cat = it,
+                            onClick = {
+                                onCatClick.invoke(it.id)
+                            }
+                        )
+                    }
                 }
                 item {
                     if (catBreeds.loadState.append is LoadState.Loading) {

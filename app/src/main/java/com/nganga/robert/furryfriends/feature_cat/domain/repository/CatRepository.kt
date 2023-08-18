@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface CatRepository {
 
     fun getAllBreeds(): Flow<PagingData<CatEntity>>
+
+    fun getCatById(id: String): Flow<List<CatEntity>>
 }
