@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -126,6 +127,19 @@ fun CatScreen(
                 )
             }
         }
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Attribute(
+                    modifier = Modifier.weight(1f),
+                    name = "Affection Level",
+                    value = cat.affection_level / 5.0f
+                )
+                Box(modifier = Modifier.weight(1f))
+            }
+        }
+
         item { Spacer(modifier = Modifier.height(20.dp)) }
     }
 }
