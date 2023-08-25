@@ -2,7 +2,6 @@ package com.nganga.robert.furryfriends.feature_cat.presentation.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.nganga.robert.furryfriends.core.util.Extensions.getImageUrl
 import com.nganga.robert.furryfriends.feature_cat.presentation.components.Attribute
+import com.nganga.robert.furryfriends.feature_cat.presentation.components.ImageSlider
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -49,12 +51,14 @@ fun CatScreen(
     val catsViewModel: CatsViewModel = hiltViewModel()
 
     val cat = catsViewModel.cat
-
     LaunchedEffect(key1 = true){
         catId?.let {
             catsViewModel.fetchCatById(it)
+            catsViewModel.fetchCatImages(it)
         }
     }
+
+    val pagerState = rememberPagerState()
 
     LazyColumn(
         modifier = Modifier
@@ -70,18 +74,16 @@ fun CatScreen(
         }
         item { Spacer(modifier = Modifier.height(10.dp)) }
         item {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+            Box(
+                modifier = Modifier
+                    .height(200.dp)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
             ) {
-                AsyncImage(
-                    modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .height(200.dp)
-                        .clip(RoundedCornerShape(12.dp)),
-                    model = cat.reference_image_id?.getImageUrl(),
-                    contentDescription = "cat image",
-                    contentScale = ContentScale.Crop,
+                ImageSlider(
+                    modifier = Modifier.fillMaxSize(),
+                    images = catsViewModel.catImages,
+                    pagerState = pagerState
                 )
             }
         }

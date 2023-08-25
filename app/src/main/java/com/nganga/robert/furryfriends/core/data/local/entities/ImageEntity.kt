@@ -6,9 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "images_table")
 data class ImageEntity(
+    @PrimaryKey
     val id: String,
-    val url: String
-){
-    @PrimaryKey(autoGenerate = true)
-    var uniqueId: Int = 0
-}
+    val url: String,
+    val catId: String = ""
+)
