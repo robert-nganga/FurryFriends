@@ -14,10 +14,10 @@ interface ImageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertImages(images: List<ImageEntity>)
 
-    @Query("SELECT * FROM images_table WHERE id = :id")
+    @Query("SELECT * FROM images_table WHERE catId = :id")
     fun getImages(id:String): List<ImageEntity>
 
-    @Query("DELETE FROM images_table WHERE id = :id")
+    @Query("DELETE FROM images_table WHERE catId = :id")
     fun deleteImages(id: String)
 
     @Query("DELETE FROM images_table")

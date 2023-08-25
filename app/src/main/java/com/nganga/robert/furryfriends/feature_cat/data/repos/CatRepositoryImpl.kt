@@ -48,7 +48,7 @@ class CatRepositoryImpl@Inject constructor(
         return if (shouldFetch){
             try {
                 val images = api.getImages(id)
-                imageDao.insertImages(images.map { it.toImageEntity() })
+                imageDao.insertImages(images.map { it.toImageEntity().copy(catId = id) })
                 ResultState.success(imageDao.getImages(id).map { it.toImage() })
             } catch (e: Exception){
                 Timber.e(e)
