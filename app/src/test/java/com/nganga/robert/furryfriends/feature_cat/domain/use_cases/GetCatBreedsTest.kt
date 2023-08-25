@@ -2,10 +2,9 @@ package com.nganga.robert.furryfriends.feature_cat.domain.use_cases
 
 import androidx.paging.testing.asSnapshot
 import com.google.common.truth.Truth.assertThat
-import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.repos.FakeCatRepository
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
-import com.nganga.robert.furryfriends.feature_cat.domain.repository.CatRepository
+import com.nganga.robert.furryfriends.feature_cat.domain.repos.CatRepository
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

@@ -15,7 +15,7 @@ interface ImageDao {
     fun insertImages(images: List<ImageEntity>)
 
     @Query("SELECT * FROM images_table WHERE id = :id")
-    fun getImages(id:String): Flow<List<ImageEntity>>
+    fun getImages(id:String): List<ImageEntity>
 
     @Query("DELETE FROM images_table WHERE id = :id")
     fun deleteImages(id: String)
