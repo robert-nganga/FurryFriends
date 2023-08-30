@@ -28,8 +28,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -37,8 +35,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import com.nganga.robert.furryfriends.core.util.Extensions.getImageUrl
 import com.nganga.robert.furryfriends.feature_cat.presentation.components.Attribute
 import com.nganga.robert.furryfriends.feature_cat.presentation.components.ImageSlider
 
@@ -77,7 +73,8 @@ fun CatScreen(
             Box(
                 modifier = Modifier
                     .height(200.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth(0.7f)
+                    .clip(RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 ImageSlider(

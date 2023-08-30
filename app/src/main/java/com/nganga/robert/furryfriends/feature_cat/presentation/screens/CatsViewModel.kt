@@ -1,14 +1,11 @@
 package com.nganga.robert.furryfriends.feature_cat.presentation.screens
 
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import coil.imageLoader
-import coil.request.ImageRequest
 import com.nganga.robert.furryfriends.core.util.ResultState
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Image
@@ -54,9 +51,7 @@ class CatsViewModel@Inject constructor(
                 }
             }
             ResultState.Status.LOADING->{}
-            ResultState.Status.ERROR ->{
-
-            }
+            ResultState.Status.ERROR ->{}
         }
     }
 }
