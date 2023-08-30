@@ -6,8 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.testing.asPagingSourceFactory
 import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.core.util.Constants
-import com.nganga.robert.furryfriends.feature_cat.data.remote.remote_mediator.CatRemoteMediator
-import com.nganga.robert.furryfriends.feature_cat.domain.repository.CatRepository
+import com.nganga.robert.furryfriends.feature_cat.domain.repos.CatRepository
 import kotlinx.coroutines.flow.Flow
 
 class FakeCatRepository: CatRepository {

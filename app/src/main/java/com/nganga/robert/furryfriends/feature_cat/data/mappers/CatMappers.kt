@@ -2,7 +2,9 @@ package com.nganga.robert.furryfriends.feature_cat.data.mappers
 
 import com.nganga.robert.furryfriends.core.data.local.entities.CatEntity
 import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.CatDto
+import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.ImageDto
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
+import com.nganga.robert.furryfriends.feature_cat.domain.model.Image
 
 fun CatDto.toCatEntity(): CatEntity {
     return CatEntity(
@@ -47,3 +49,4 @@ fun CatEntity.toCat(): Cat {
         reference_image_id = reference_image_id,
     )
 }
+

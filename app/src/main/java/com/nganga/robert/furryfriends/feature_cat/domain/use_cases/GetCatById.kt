@@ -2,7 +2,7 @@ package com.nganga.robert.furryfriends.feature_cat.domain.use_cases
 
 import com.nganga.robert.furryfriends.feature_cat.data.mappers.toCat
 import com.nganga.robert.furryfriends.feature_cat.domain.model.Cat
-import com.nganga.robert.furryfriends.feature_cat.domain.repository.CatRepository
+import com.nganga.robert.furryfriends.feature_cat.domain.repos.CatRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest

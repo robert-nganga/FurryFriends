@@ -8,7 +8,7 @@ on:
 jobs:
 
   ci:
-    name: ktlint Format
+    name: continuous integration
     runs-on: ubuntu-latest
     steps:
 

@@ -2,6 +2,7 @@ package com.nganga.robert.furryfriends.feature_cat.data.remote.apis
 
 import com.nganga.robert.furryfriends.feature_cat.data.util.HttpRoutes
 import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.CatDto
+import com.nganga.robert.furryfriends.feature_cat.data.remote.dtos.ImageDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.accept
@@ -21,6 +22,14 @@ class BreedsApiImpl @Inject constructor(
             parameter("page", page)
             parameter("limit", pageSize)
 //            parameter("apiKey", BuildC)
+        }.body()
+    }
+
+    override suspend fun getImages(id: String): List<ImageDto> {
+        return client.get {
+            url(HttpRoutes.CAT_IMAGES)
+            parameter("limit", 10)
+            parameter("breeds_id", id)
         }.body()
     }
 }
